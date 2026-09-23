@@ -46,7 +46,7 @@ with aba_clientes:
     with st.form("novo_cliente", clear_on_submit=True):
         c1, c2 = st.columns(2)
         nome = c1.text_input("Nome / razão social")
-        contato = c2.text_input("Contato")
+        c2.text_input("Contato") por c2.text_input("CPF / CNPJ")
         c3, c4 = st.columns(2)
         telefone = c3.text_input("Telefone")
         email = c4.text_input("E-mail")
@@ -55,7 +55,7 @@ with aba_clientes:
 
     with sessao() as db:
         clientes = [
-            {"ID": c.id, "Nome": c.nome, "Contato": c.contato or "--",
+            {"ID": c.id, "Nome": c.nome, "CPF/CNPJ": c.documento or "--",
              "Telefone": c.telefone or "--", "Ativo": "Sim" if c.ativo else "Não"}
             for c in repo.listar_clientes(db, apenas_ativos=False)
         ]
