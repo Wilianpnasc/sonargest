@@ -25,8 +25,8 @@ from app.auth import barra_lateral, exigir_perfil
 from app.models import PERFIL_ADMIN
 
 st.set_page_config(page_title="SonarGest — Dashboard", page_icon="📊", layout="wide")
-exigir_perfil(PERFIL_ADMIN)
-barra_lateral()
+usuario = exigir_perfil(PERFIL_ADMIN)
+barra_lateral(usuario)
 
 CORES = {"Dentro": "#2E7D32", "Acima": "#C62828", "Abaixo": "#EF6C00"}
 
