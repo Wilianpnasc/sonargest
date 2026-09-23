@@ -166,7 +166,7 @@ def criar_cliente(
         raise RegraDeNegocioError("Informe o nome do cliente.")
     cliente = Cliente(
         nome=nome.strip(),
-        contato=(contato or "").strip() or None,
+        documento=(contato or "").strip() or None,
         telefone=(telefone or "").strip() or None,
         email=(email or "").strip().lower() or None,
     )
