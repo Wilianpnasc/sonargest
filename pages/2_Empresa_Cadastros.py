@@ -46,7 +46,7 @@ with aba_clientes:
     with st.form("novo_cliente", clear_on_submit=True):
         c1, c2 = st.columns(2)
         nome = c1.text_input("Nome / razão social")
-        c2.text_input("Contato") por c2.text_input("CPF / CNPJ")
+        contato = c2.text_input("CPF / CNPJ")
         c3, c4 = st.columns(2)
         telefone = c3.text_input("Telefone")
         email = c4.text_input("E-mail")
