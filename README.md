@@ -5,6 +5,46 @@ carro de som planejar serviços de divulgação, permitir que o motorista regist
 horário real de execução e analisar a diferença entre o **contratado** e o
 **realizado** por meio de indicadores e um dashboard.
 
+## Acesso rápido e visão geral
+
+| Recurso | Link | Como utilizar |
+|---|---|---|
+| SonarGest publicado | [Abrir o sistema](https://sonargest.streamlit.app) | Acessar as telas da empresa e do motorista e o dashboard |
+| Código-fonte | [Repositório no GitHub](https://github.com/Wilianpnasc/sonargest) | Consultar o código, os arquivos SQL, os testes e a documentação |
+| Banco de dados | [Projeto no Supabase](https://supabase.com/dashboard/project/aofqcmhlodllymcoopsm) | Acesso restrito ao responsável e aos colaboradores autorizados |
+| Hospedagem | [Painel do Streamlit Community Cloud](https://share.streamlit.io/) | Gerenciar o aplicativo com a conta autorizada |
+| Plataforma Streamlit | [Documentação do Streamlit](https://docs.streamlit.io/) | Consultar a tecnologia utilizada nas telas e na publicação |
+| Plataforma Supabase | [Documentação do Supabase](https://supabase.com/docs) | Consultar a plataforma que hospeda o PostgreSQL |
+
+O link do banco não libera acesso às tabelas: é necessário entrar em uma conta
+autorizada. O painel do Streamlit também exige a conta responsável pela aplicação.
+Credenciais de conexão e senhas do banco não devem ser compartilhadas no README.
+
+### Como o projeto foi construído
+
+1. **Modelagem:** seis tabelas relacionais com chaves estrangeiras, validações e
+   views SQL; consulte [modelo de dados](docs/MODELO_DADOS.md) e
+   [estrutura SQL](database/schema.sql).
+2. **Aplicação:** Python e Streamlit para login, cadastros, planejamento dos
+   serviços e registro de início/finalização pelo motorista; ponto de entrada:
+   [Home.py](Home.py).
+3. **Regras e segurança:** SQLAlchemy para acesso ao PostgreSQL, bcrypt para
+   senhas e autorização por perfil; consulte [regras](app/services.py) e
+   [autenticação](app/auth.py).
+4. **Análise:** pandas transforma os registros em indicadores de contratado ×
+   realizado; Plotly exibe os resultados no [dashboard](pages/5_Empresa_Dashboard.py).
+5. **Verificação:** [testes automatizados](tests/) e base de demonstração com
+   120 serviços fictícios, 10 clientes, 5 motoristas e 3 carros.
+6. **Publicação:** código no GitHub, aplicativo no Streamlit Community Cloud e
+   PostgreSQL no Supabase; veja o [guia de publicação](docs/DEPLOY.md).
+
+### Roteiro para avaliação acadêmica
+
+Abra o sistema publicado, consulte o código e o modelo de dados, confira as
+fórmulas na seção **Indicadores** abaixo e siga as instruções da seção
+**Como rodar os testes**. Para apresentar o projeto, utilize o
+[roteiro de apresentação](docs/APRESENTACAO.md).
+
 ## Objetivo
 
 Demonstrar um ciclo completo de dados:
