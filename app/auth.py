@@ -10,6 +10,8 @@ vínculo com o motorista.
 
 from __future__ import annotations
 
+import logging
+
 import streamlit as st
 
 from app.db import sessao
@@ -98,6 +100,12 @@ def formulario_login() -> None:
     except RegraDeNegocioError as erro:
         st.error(str(erro))
     except Exception:  # falha de conexão, configuração ausente etc.
-        st.error("Não foi possível acessar o banco de dados. Confira o arquivo .env.")
+        # Registra a causa real nos logs do servidor (Manage app -> Logs),
+        # sem expor detalhes sensíveis na tela de quem está acessando.
+        logging.getLogger("sonargest").exception("Falha ao acessar o banco de dados no login")
+        st.error(
+            "Não foi possível acessar o banco de dados. "
+            "Confira a configuração (local: arquivo .env; nuvem: Settings -> Secrets)."
+        )
     else:
         st.rerun()
